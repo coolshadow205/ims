@@ -1,0 +1,6 @@
+Add ims.sql in your mysql database name must be 'ims'.
+First try to read the supplier.php file then write some code. 
+Note:
+1. Change the database username and password 
+	1.1] you change that by going in the file classes/Database.php
+2. The Project is working prorperly.
