@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 01, 2020 at 04:35 PM
+-- Generation Time: Apr 11, 2020 at 11:57 AM
 -- Server version: 10.3.16-MariaDB
 -- PHP Version: 7.3.7
 
@@ -50,7 +50,8 @@ INSERT INTO `customers` (`cust_id`, `cust_fname`, `cust_lname`, `cust_email`, `c
 (1, 'Mehul', 'Gajinkar', 'mg@gmail.com', '8523697410', 'male', '', 'Maharashtra', 'Mumbai', '400025', 'Nahur'),
 (2, 'Jay', 'Ashra', 'jay@gmail.com', '0123456789', 'male', '9632587410', 'Maharashtra', 'Mumbai', '502362', 'SomeAddress'),
 (3, 'Aniket', 'Konkar', 'ak@gmail.com', '2587413690', 'male', '2587413690', 'Maharashtra', 'Mumbai', '254136', 'Thane'),
-(4, 'Rahul', 'Bhanushali', 'rmb@gmail.com', '8524697130', 'male', '', 'Maharashtra', 'Mumbai', '254136', 'Dombivali');
+(4, 'Rahul', 'Bhanushali', 'rmb@gmail.com', '8524697130', 'male', '7412589630', 'Maharashtra', 'Mumbai', '254136', 'Dombivali'),
+(7, 'Dhairya', 'Bhadra', 'dhairya@gmail.com', '7412589630', 'male', '1234567890', 'Maharashtra', 'Mumbaiya', '478569', 'Mumbai');
 
 -- --------------------------------------------------------
 
@@ -119,7 +120,10 @@ INSERT INTO `invoice` (`invoice_number`, `cust_id`, `grand_total`, `invoice_date
 (47, 3, 91000, '2020-03-27'),
 (48, 4, 17800, '2020-03-28'),
 (49, 3, 113000, '2020-03-24'),
-(50, 1, 6775000, '2020-04-01');
+(50, 1, 6775000, '2020-04-01'),
+(51, 2, 83000, '2020-04-02'),
+(52, 1, 37300, '2020-04-05'),
+(53, 7, 702500, '2020-04-05');
 
 -- --------------------------------------------------------
 
@@ -144,12 +148,13 @@ CREATE TABLE `products` (
 INSERT INTO `products` (`prod_id`, `supp_id`, `prod_name`, `prod_company_name`, `quantity`, `price`, `prod_date`) VALUES
 (2, 1, 'i7', 'Intel', 0, 68000, '2020-03-25'),
 (12, 9, 'SteelsSeries Sensei', 'SteelSeries', 488, 4000, '2020-03-21'),
-(13, 1, 'Predator Helios 300', 'Acer', 79, 80000, '2020-03-21'),
-(14, 5, 'Nvidia Geforce GTX 1050 Ti', 'Nvidia', 499, 14800, '2020-03-21'),
-(15, 5, 'Razer DeathAdder', 'Razer', 3997, 3000, '2020-03-22'),
+(13, 1, 'Predator Helios 300', 'Acer', 78, 80000, '2020-03-21'),
+(14, 5, 'Nvidia Geforce GTX 1050 Ti', 'Nvidia', 498, 14800, '2020-03-21'),
+(15, 5, 'Razer DeathAdder', 'Razer', 3996, 3000, '2020-03-22'),
 (16, 1, 'OnePlus 5T', 'OnePlus', 100, 35000, '2020-03-22'),
 (17, 1, 'OnePlus 3T', 'OnePlus', 23, 25000, '2020-03-22'),
-(18, 1, 'Mouse', 'Mouse1234', 10, 4500, '2020-03-24');
+(18, 1, 'Mouse', 'Mouse12345', 11, 4500, '2020-03-24'),
+(20, 10, 'G400', 'Logitech', 135, 1500, '2020-04-05');
 
 -- --------------------------------------------------------
 
@@ -249,7 +254,13 @@ INSERT INTO `sales` (`sale_id`, `invoice_number`, `prod_id`, `quantity`, `amount
 (77, 49, 2, 1, 68000),
 (78, 50, 2, 99, 68000),
 (79, 50, 12, 10, 4000),
-(80, 50, 15, 1, 3000);
+(80, 50, 15, 1, 3000),
+(81, 51, 13, 1, 80000),
+(82, 51, 15, 1, 3000),
+(83, 52, 19, 15, 1500),
+(84, 52, 14, 1, 14800),
+(85, 53, 2, 10, 68000),
+(86, 53, 20, 15, 1500);
 
 -- --------------------------------------------------------
 
@@ -274,9 +285,10 @@ CREATE TABLE `suppliers` (
 --
 
 INSERT INTO `suppliers` (`supp_id`, `supp_fname`, `supp_lname`, `supp_email`, `supp_phone`, `business_name`, `business_address`, `business_email`, `business_phone`) VALUES
-(1, 'Jay', 'Ashra', 'jayashra@gmail.com', '4567891230', 'dontknow', '0123456789', 'Room no:06, Mulji Ladha BLDG , Khot Lane , Ghatkopar(W)', 'jay.ashra251198'),
-(5, 'Jennifer', 'Goot', 'jen@gmail.com', '0123456789', 'business', '', '0123456789', ''),
-(10, 'Mehul', 'Gajinkar', 'mg@gmail.com', '7531598462', 'UIDesigner', '3578946122', 'Address', 'ui@gmail.com');
+(1, 'Jay', 'Ashra', 'jayashra@gmail.com', '4567891230', 'dontknow', 'Mumbai', 'jay.ashra@some.com', '1234567890'),
+(5, 'Jennifer', 'Goot', 'jen@gmail.com', '0123456789', 'business', 'Jen is from NYC', 'abc@gmail.com', '4567891230'),
+(10, 'Mehul', 'Gajinkar', 'mg@gmail.com', '7531598462', 'UIDesigner', 'Mumbai', 'mehul@gmail.com', '8956230147'),
+(15, 'Alex', 'Goot', 'alex@gmail.com', '7412589630', 'alex', 'someaddress', 'alex1234@gmail.com', '7412589630');
 
 --
 -- Indexes for dumped tables
@@ -320,31 +332,31 @@ ALTER TABLE `suppliers`
 -- AUTO_INCREMENT for table `customers`
 --
 ALTER TABLE `customers`
-  MODIFY `cust_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `cust_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `invoice`
 --
 ALTER TABLE `invoice`
-  MODIFY `invoice_number` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
+  MODIFY `invoice_number` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
 
 --
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `prod_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `prod_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `sales`
 --
 ALTER TABLE `sales`
-  MODIFY `sale_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=81;
+  MODIFY `sale_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=87;
 
 --
 -- AUTO_INCREMENT for table `suppliers`
 --
 ALTER TABLE `suppliers`
-  MODIFY `supp_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `supp_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
